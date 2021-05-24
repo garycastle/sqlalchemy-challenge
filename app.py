@@ -70,8 +70,11 @@ def tobs():
     print(temp_obs)
     return jsonify(temp_obs)
 
+
 # @app.route('/api/v1.0/2016-01-01/')
-# def calc_temps_start('2016-01-01'):
+
+# def calc_temps_start(start_date):
+
 #     print(start_date)
     
 #     select = [func.min(meas.tobs), func.avg(meas.tobs), func.max(meas.tobs)]
@@ -82,17 +85,19 @@ def tobs():
 #     print(result_temp)
 #     return jsonify(result_temp)
 
-# @app.route('/api/v1.0/<start_date>/<end_date>/')
+# @app.route('/api/v1.0/2016-01-01/2016-12-31/')
+# start_date = '2016-01-01'
+# end_date = '2016-12-31'
 # def calc_temps_start_end(start_date, end_date):
-#     print("In start & end date section.")
+
     
-#     select = [func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
+#     select = [func.min(meas.tobs), func.avg(meas.tobs), func.max(meas.tobs)]
 #     result_temp = session.query(*select).\
-#         filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
+#         filter(meas.date >= start_date).filter(meas.date <= end_date).all()
 #     print()
 #     print(f"Calculated temp for start date {start_date} & end date {end_date}")
 #     print(result_temp)
-#     print("Out of start & end date section.")
+
 #     return jsonify(result_temp)
 
 
