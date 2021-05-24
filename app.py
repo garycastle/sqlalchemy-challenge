@@ -45,6 +45,57 @@ def precipitation():
     print("Out of Precipitation section.")
     return jsonify(p_dict) 
 
+@app.route('/api/v1.0/stations/')
+def stations():
+    
+    station_list = session.query(station.station)\
+    .order_by(station.station).all() 
+    print()
+    print("Station List:")   
+    for row in station_list:
+        print (row[0])
+
+    return jsonify(station_list)
+
+@app.route('/api/v1.0/tobs/')
+def tobs():
+    
+    last_date = session.query(meas.date).order_by(meas.date.desc()).first().date
+    last_year = dt.datetime.strptime(last_date, '%Y-%m-%d') - dt.timedelta(days=365)
+
+    temp_obs = session.query(meas.date, meas.tobs)\
+        .filter(meas.date >= last_year)\
+        .order_by(meas.date).all()
+    print()
+    print(temp_obs)
+    return jsonify(temp_obs)
+
+# @app.route('/api/v1.0/2016-01-01/')
+# def calc_temps_start('2016-01-01'):
+#     print(start_date)
+    
+#     select = [func.min(meas.tobs), func.avg(meas.tobs), func.max(meas.tobs)]
+#     result_temp = session.query(*select).\
+#         filter(meas.date >= start_date).all()
+#     print()
+#     print(f"Calculated temp for start date {start_date}")
+#     print(result_temp)
+#     return jsonify(result_temp)
+
+# @app.route('/api/v1.0/<start_date>/<end_date>/')
+# def calc_temps_start_end(start_date, end_date):
+#     print("In start & end date section.")
+    
+#     select = [func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
+#     result_temp = session.query(*select).\
+#         filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
+#     print()
+#     print(f"Calculated temp for start date {start_date} & end date {end_date}")
+#     print(result_temp)
+#     print("Out of start & end date section.")
+#     return jsonify(result_temp)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
