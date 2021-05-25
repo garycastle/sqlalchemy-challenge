@@ -22,8 +22,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
 	print("Homepage")
-	return(f"Climate API!<br/>"
-        f"Available Routes:<br/>"
+	return(f"Climate API<br/>"
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
