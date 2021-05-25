@@ -73,7 +73,7 @@ def tobs():
 # @app.route('/api/v1.0/2016-01-01/')
 
 # def calc_temps_start(start_date):
-
+# start_date = '2016-01-01'
 #     print(start_date)
     
 #     select = [func.min(meas.tobs), func.avg(meas.tobs), func.max(meas.tobs)]
